@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails de l'article</title>
+  <link rel="stylesheet" href="book-detail.component.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="article">
+      <div class="details" *ngIf="book">
+        <h1>{{ book.titre }}</h1>
+        <p>{{ book.author }}</p>
+        <p>{{ book.description }}</p>
+        <!-- Autres détails du livre -->
+      </div>
+      <button class="btn btn-primary" (click)="book && addToCart(book)">Ajouter au panier</button>
+    </div>
+  </div>
+</body>
+
+</html>
