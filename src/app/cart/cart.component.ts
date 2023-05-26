@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../interface/book'; // Importez l'interface 'Book'
+import { Book } from '../interface/book';
 
 @Component({
   selector: 'app-cart',
