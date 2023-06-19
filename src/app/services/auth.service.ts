@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -34,5 +34,9 @@ export class AuthService {
   
   register(credentials: any): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/register', credentials);
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getToken();
   }
 }

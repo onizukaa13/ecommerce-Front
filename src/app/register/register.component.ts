@@ -17,8 +17,6 @@ export class RegisterComponent {
   constructor(private authService: AuthService,private registerService: RegisterService) {}
 
   onRegister() {
-    console.log(this.password,this.confirmPassword);
-    console.log(this.password !== this.confirmPassword);
     
     if (this.password !== this.confirmPassword) {
       // Gérer l'erreur de confirmation du mot de passe
@@ -32,7 +30,7 @@ export class RegisterComponent {
       email: this.email,
       password: this.password
     };
-
+    
     this.registerService.register(credentials).subscribe({
       next: res => {
         // Gérer la création de compte réussie

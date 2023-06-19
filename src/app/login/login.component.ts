@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
         this.authService.setToken(res.token); // Stocke le token dans le localStorage
         this.router.navigate(['/books']); // Redirige l'utilisateur vers la page principale
       },
-      error: e => {
-        'Erreur de Connexion'
+      error: error => {
+        console.error('Erreur de connexion:', error);
+        // Affichez un message d'erreur approprié à l'utilisateur ou effectuez d'autres actions
       }
     });
   }

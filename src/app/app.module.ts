@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { RegisterComponent } from './register/register.component';
     BookDetailComponent,
     CartComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    
   ],
   imports: [
     FormsModule,
