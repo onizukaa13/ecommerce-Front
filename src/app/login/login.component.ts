@@ -15,9 +15,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  redirectToRegister(): void {
+    this.router.navigateByUrl('/register');
+  }
+
   onConnexion() {
-    console.log('Email:', this.email);
-    console.log('Mot de passe:', this.password);
+    
     const credentials = {
       username: this.email,
       password: this.password
@@ -25,7 +28,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(credentials).subscribe({
       next: res => {
-        console.log(res);
+        localStorage.setItem('connectedUserEmail',this.email);
         this.authService.setToken(res.token); // Stocke le token dans le localStorage
         this.router.navigate(['/books']); // Redirige l'utilisateur vers la page principale
       },
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
         console.error('Erreur de connexion:', error);
         // Affichez un message d'erreur approprié à l'utilisateur ou effectuez d'autres actions
       }
+   
     });
   }
 }

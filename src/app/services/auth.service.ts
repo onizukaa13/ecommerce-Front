@@ -39,4 +39,11 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
+
+  getUserInfo(): Observable<any> {
+    const token = this.getToken();
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.get<any>('http://127.0.0.1:8000/api/user', { headers });
+  }
+  
 }

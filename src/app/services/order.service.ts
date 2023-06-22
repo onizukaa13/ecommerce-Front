@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Orderline } from '../interface/orderline';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,11 @@ export class OrderService {
     const url = `${this.apiUrl}/${orderId}`;
     return this.http.delete<any>(url);
   }
+
+  setOrderline(orderline:Orderline): Observable<any> {
+    const url = 'http://localhost:8000/api/orderlines'; // Remplacez par l'URL appropriée pour créer une ligne de commande
+    
+    return this.http.post<any>(url, orderline);
+  }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-command',
@@ -17,7 +18,17 @@ export class OrderComponent implements OnInit {
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['login']);
     } else {
-      this.getOrder();
+      const token = localStorage.getItem('token');
+      if (token) {
+        const decodedToken: any = jwt_decode(token);
+        const userId = decodedToken.userId;
+  
+        // l'identifiant de l'utilisateur pour l'attacher à la commande
+  
+        this.getOrder();
+      } else {
+        // Gérer le cas où le token est nul ou inexistant
+      }
     }
   }
 
@@ -65,4 +76,6 @@ export class OrderComponent implements OnInit {
       }
     );
   }
+
+  
 }

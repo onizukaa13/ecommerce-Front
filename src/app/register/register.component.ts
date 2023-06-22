@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { RegisterService } from '../services/register.service';
 
@@ -14,7 +15,7 @@ export class RegisterComponent {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private authService: AuthService,private registerService: RegisterService) {}
+  constructor(private authService: AuthService,private registerService: RegisterService, private router: Router) {}
 
   onRegister() {
     
@@ -29,11 +30,10 @@ export class RegisterComponent {
       firstname: this.firstname,
       email: this.email,
       password: this.password
-    };
-    
+    };    
     this.registerService.register(credentials).subscribe({
       next: res => {
-        // Gérer la création de compte réussie
+        this.router.navigateByUrl('/login')
       },
       error: e => {
         // Gérer l'erreur de création de compte

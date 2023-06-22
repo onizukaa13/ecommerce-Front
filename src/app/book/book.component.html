@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Mon compte</a>
+          <a class="nav-link" routerLink="/account">Mon compte</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/cart">Panier</a>
@@ -32,6 +32,7 @@
           <h5 class="card-title">{{ book.titre }}</h5>
           <p class="card-text">{{ book.author }}</p>
           <p class="card-text">{{ book.description }}</p>
+          <p class="card-text">{{ book.prix }} €</p>
           <button class="btn btn-primary" (click)="addToCart(book)">Ajouter au panier</button>
           <button class="btn btn-secondary" (click)="viewBookDetails(book)">Voir les détails</button>
         </div>
