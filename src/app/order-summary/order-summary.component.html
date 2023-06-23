@@ -3,6 +3,15 @@
     <p>Numéro de commande : {{ order.orderNumber }}</p>
     <p>Date de commande : {{ order.orderDate | date }}</p>
     <p>Utilisateur : {{ order.user?.name }}</p>
-    <p>...</p>
+    
+    <h2>Livres commandés :</h2>
+    <ul>
+      <li *ngFor="let orderline of order.orderline">
+        <p>{{ orderline.book?.titre }}</p>
+        <img [src]="orderline.book?.image" alt="Image du livre">
+        <p>Quantité : {{ orderline.quantity }}</p>
+        <!-- Ajoutez d'autres informations spécifiques au livre si nécessaire -->
+      </li>
+    </ul>
   </div>
   
