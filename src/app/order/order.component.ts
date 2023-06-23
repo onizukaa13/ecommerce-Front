@@ -34,7 +34,7 @@ export class OrderComponent implements OnInit {
 
   getOrder(): void {
     const orderId = '123'; // Remplacez par l'identifiant de la commande souhaitée
-    this.orderService.getOrder(orderId).subscribe(
+    this.orderService.getOrderById(orderId).subscribe(
       (response) => {
         this.command = response;
       },

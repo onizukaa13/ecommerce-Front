@@ -17,7 +17,8 @@ export class AuthService {
   
   logout(): void {
     this.token = null;
-    localStorage.removeItem('token'); // Supprime le token du localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('connectedUserEmail'); // Supprime le token du localStorage
   }
   
   setToken(token: string): void {

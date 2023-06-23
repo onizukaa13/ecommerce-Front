@@ -15,7 +15,7 @@ export class OrderService {
     return this.http.post<any>(this.apiUrl, orderDetails);
   }
 
-  getOrder(orderId: string): Observable<any> {
+  getOrderById(orderId: string): Observable<any> {
     const url = `${this.apiUrl}/${orderId}`;
     return this.http.get<any>(url);
   }
@@ -31,6 +31,7 @@ export class OrderService {
   }
 
   setOrderline(orderline:Orderline): Observable<any> {
+    console.log(orderline)
     const url = 'http://localhost:8000/api/orderlines'; // Remplacez par l'URL appropriée pour créer une ligne de commande
     
     return this.http.post<any>(url, orderline);

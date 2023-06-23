@@ -1,0 +1,8 @@
+<div *ngIf="order">
+    <h1>Récapitulatif de la commande</h1>
+    <p>Numéro de commande : {{ order.orderNumber }}</p>
+    <p>Date de commande : {{ order.orderDate | date }}</p>
+    <p>Utilisateur : {{ order.user?.name }}</p>
+    <p>...</p>
+  </div>
+  

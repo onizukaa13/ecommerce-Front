@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { User } from '../interface/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-account',
@@ -7,18 +8,20 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  userInfo: any;
+  user: User={};
 
-  constructor(private authService: AuthService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.getUserInfo();
   }
 
   getUserInfo(): void {
-    this.authService.getUserInfo().subscribe(
+    this.userService.getUserByEmail(localStorage.getItem('connectedUserEmail')??"").subscribe(
       (response) => {
-        this.userInfo = response;
+        this.user = response[0];
+        console.log(this.user);
+        
       },
       (error) => {
         console.error(error);
