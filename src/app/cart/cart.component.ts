@@ -17,6 +17,7 @@ import { Order } from '../interface/order';
 })
 export class CartComponent implements OnInit {
   order: Order = {};
+  orderlines: Orderline[] = [];
   books: Book[] = [];
   user: User | null = null;
   orderline: Orderline = {};
@@ -28,8 +29,6 @@ export class CartComponent implements OnInit {
     this.loadCartItems();
     this.userService.getUserByEmail(localStorage.getItem('connectedUserEmail') ?? '').subscribe(
       (response) => {
-
-
         this.user = response[0]
       },
       (error) => {
@@ -63,9 +62,6 @@ export class CartComponent implements OnInit {
       });
     }
   }
-
-
-
   decrementQuantity(book: Book) {
     if (book.number_ordered !== undefined && book.number_ordered > 1) {
       book.number_ordered -= 1;
@@ -81,7 +77,6 @@ export class CartComponent implements OnInit {
     if (localStorage.getItem('connectedUserEmail') === null) {
       this.router.navigateByUrl('/login');
       return
-
     }
     // Vérification des stocks avant de valider la commande pour chaque livre
     this.errorStock = false;
@@ -91,9 +86,7 @@ export class CartComponent implements OnInit {
           if (item.number_ordered !== undefined && el.stock !== undefined && item.number_ordered > el.stock) {
             console.error('Certains livres sont en rupture de stock :', item.titre);
             this.errorStock = true;
-
           }
-
         })
       }
     });
@@ -102,64 +95,47 @@ export class CartComponent implements OnInit {
     if (!this.errorStock) {
 
 
-      const orderDetails = {
-        orderlines: this.books,
-        user: this.user
-      };
+      for (let i = 0; i < this.books.length; i++) {
+        if (!(this.books[i].id !== undefined && this.books[i].stock !== undefined && this.books[i].number_ordered !== undefined)) {
+          console.log('La quantité de stock n\'a pas été mise à jour pour le livre', this.books[i].titre);
+          return;
+        }
+        this.orderlines.push({ book: this.books[i], quantity: this.books[i].number_ordered })
 
-
+      }
 
       this.userService.getUserByEmail(localStorage.getItem('connectedUserEmail') ?? '').subscribe((el) => {
         if (el[0] === undefined) {
           this.router.navigateByUrl('/login');
         }
       });
+      const orderDetails = {
+        orderlines: this.orderlines,
+        user: this.user
+      };
+      console.log(orderDetails);
 
-      this.orderService.placeOrder(orderDetails).subscribe(
-        (response) => {
-          this.books.forEach((book) => {
-            this.orderline.book = book;
-            this.orderline.order = response;
-            this.orderline.quantity = book.number_ordered;
-
-            this.orderService.setOrderline(this.orderline).subscribe(
-              (res) => {
-                this.orderline = {};
-                // Traitement réussi pour chaque livre de la commande
-
-                // Mettre à jour la quantité de stock dans la base de données
-                if (book.id !== undefined && book.stock !== undefined && book.number_ordered !== undefined) {
-                  book.stock -= book.number_ordered
-                  this.bookService.updateBook(book.id, book).subscribe(
-                    (response) => {
-                      console.log('La quantité de stock a été mise à jour pour le livre', book.titre);
-                    },
-                    (error) => {
-                      console.error('Erreur lors de la mise à jour de la quantité de stock', error);
-                    }
-                  );
-                }
+      this.orderService.placeOrder(orderDetails).subscribe({
+        next: (response) => {
+          for (const book of this.books) {
+            console.log(book.titre);
+            book.stock! -= book.number_ordered!
+            this.bookService.updateBook(book.id!, book).subscribe({
+              next: (response) => {
+                console.log('La quantité de stock a été mise à jour pour le livre', book.titre);
               },
-              (error) => {
-
-                this.orderline = {};
-                // Gérer l'erreur lors de l'enregistrement du livre dans la commande
-                console.error('Le livre n\'a pas pu être enregistré dans la commande', error);
-              }
-            );
-          });
-
-          // Traitement réussi de la commande
-          // Réinitialiser le panier
+              error: (err) => console.log("Problème de mise à jour de stock")
+            });
+          }
           this.books = [];
           localStorage.removeItem('cart');
           this.router.navigate(['order-summary', response.id]);
         },
-        (error) => {
+        error: (error) => {
           // Gérer l'erreur lors de la passation de commande
           console.error('Erreur lors du passage de la commande', error);
         }
-      );
+      });
     }
   }
 }

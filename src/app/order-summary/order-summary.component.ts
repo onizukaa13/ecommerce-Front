@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../services/order.service';
 import { Order } from '../interface/order';
 import { Component, OnInit } from '@angular/core';
+import { Orderline } from '../interface/orderline';
+
 
 @Component({
   selector: 'app-order-summary',
