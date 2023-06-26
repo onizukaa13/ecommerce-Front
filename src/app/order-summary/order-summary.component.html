@@ -6,9 +6,10 @@
     
     <h2>Livres commandés :</h2>
     <ul>
-      <li *ngFor="let orderline of order.orderline">
+      <li *ngFor="let orderline of order['orderlines']">
         <p>{{ orderline.book?.titre }}</p>
         <img [src]="orderline.book?.image" alt="Image du livre">
+        <p>Prix : {{ orderline.book?.prix * orderline.quantity }} €</p>
         <p>Quantité : {{ orderline.quantity }}</p>
         <!-- Ajoutez d'autres informations spécifiques au livre si nécessaire -->
       </li>

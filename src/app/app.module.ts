@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
     
     
   ],
