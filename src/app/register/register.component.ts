@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { RegisterService } from '../services/register.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,32 +15,34 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  
+  @ViewChild('registerForm') registerForm!: NgForm;
 
-  constructor(private authService: AuthService,private registerService: RegisterService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private registerService: RegisterService,
+    private router: Router
+  ) {}
 
   onRegister() {
-    
-    if (this.password !== this.confirmPassword) {
-      // Gérer l'erreur de confirmation du mot de passe
-      
-      return;
-    }
+    if (this.registerForm.valid) {
+      // Effectuer l'enregistrement du compte
+      const credentials = {
+        name: this.name,
+        firstname: this.firstname,
+        email: this.email,
+        password: this.password
+      };
 
-    const credentials = {
-      name: this.name,
-      firstname: this.firstname,
-      email: this.email,
-      password: this.password
-    };    
-    this.registerService.register(credentials).subscribe({
-      next: res => {
-        this.router.navigateByUrl('/login')
-      },
-      error: e => {
-        // Gérer l'erreur de création de compte
-      }
-    });
+      this.registerService.register(credentials).subscribe({
+        next: res => {
+          // Rediriger vers la page de connexion
+          this.router.navigate(['/login']);
+        },
+        error: e => {
+          // Gérer l'erreur de création de compte
+        }
+      });
+    }
   }
 }
-
-

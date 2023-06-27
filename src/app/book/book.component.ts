@@ -14,9 +14,9 @@ export class BookComponent implements OnInit {
   cartItems: Book[] = [];
   isExistBook: Boolean=false;
   failedPopUp: Boolean=false;
-  successPopUp: Boolean=false
-
+  successPopUp: Boolean=false;
   connected:Boolean = false
+  authorFilter: string = '';
   
   constructor(private bookService: BookService,private authService: AuthService, private router:Router) { }
   
@@ -26,6 +26,7 @@ export class BookComponent implements OnInit {
       console.log(this.cartItems)
       this.books = res;
       console.log(res)
+
     });
 
     let token = this.authService.getToken()
@@ -93,13 +94,27 @@ export class BookComponent implements OnInit {
       if(element.stock != undefined && element.stock == 0){
         this.books.splice(index,1)
       } 
-    });
+    }); 
   }
+
+  filtre_auteur() {
+    if (this.authorFilter) {
+      this.books = this.books.filter(book =>
+        book.author && book.author.toLowerCase().includes(this.authorFilter.toLowerCase())
+      );
+    } else {
+      // Si le filtre est vide, réinitialisez les livres
+      this.reset_filter();
+    }
+  }
+  
+  
 
   reset_filter(){
     this.bookService.getBooks().subscribe(res => {
       this.cartItems = JSON.parse(localStorage.getItem("cart") || "[]") as Book[];
       this.books = res;
+      this.authorFilter = '';
     });
   }
 

@@ -1,25 +1,85 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<h2>Créer un compte</h2>
-<form (ngSubmit)="onRegister()">
-  <div class="form-group">
-    <label for="nom">Nom :</label>
-    <input type="text" id="nom" class="form-control" [(ngModel)]="name" name="nom" required>
-  </div>
-  <div class="form-group">
-    <label for="prenom">Prénom :</label>
-    <input type="text" id="prenom" class="form-control" [(ngModel)]="firstname" name="prenom" required>
-  </div>
-  <div class="form-group">
-    <label for="email">Email :</label>
-    <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required>
-  </div>
-  <div class="form-group">
-    <label for="password">Mot de passe :</label>
-    <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required>
-  </div>
-  <div class="form-group">
-    <label for="confirmPassword">Confirmer le mot de passe :</label>
-    <input type="password" id="confirmPassword" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Créer un compte</button>
-</form>
+
+<style>
+  .login-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+
+  .login-container .form-group label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .login-container .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+
+  .login-container .text-danger {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .login-container .btn-primary {
+    width: 100%;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="login-container">
+  <h2>Créer un compte</h2>
+
+  <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" class="form-control" [(ngModel)]="name" name="nom" required>
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" class="form-control" [(ngModel)]="firstname" name="prenom" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email :</label>
+      <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required email>
+      <div *ngIf="registerForm.controls['email'].invalid" class="text-danger">
+        L'adresse e-mail est invalide.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe :</label>
+      <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required minlength="8">
+      <div *ngIf="registerForm.controls['password'].invalid">
+        <div *ngIf="registerForm.controls['password'].errors?.['required']" class="text-danger">
+          Le mot de passe est requis.
+        </div>
+        <div *ngIf="registerForm.controls['password'].errors?.['minlength']" class="text-danger">
+          Le mot de passe doit contenir au moins 8 caractères.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirmer le mot de passe :</label>
+      <input type="password" id="confirmPassword" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+    </div>
+    <div *ngIf="!registerForm.valid" class="text-danger">
+      Impossible de créer le compte.
+    </div>
+    <button type="submit" class="btn btn-primary">Créer un compte</button>
+  </form>
+</div>

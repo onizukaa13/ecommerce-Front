@@ -37,6 +37,6 @@ export class LoginComponent implements OnInit {
         // Affichez un message d'erreur approprié à l'utilisateur ou effectuez d'autres actions
       }
    
-    });
+    })
   }
 }
