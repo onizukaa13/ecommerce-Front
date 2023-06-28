@@ -10,17 +10,19 @@
         <div class="card">
           <div class="card-body">
             <form (ngSubmit)="onConnexion()" class="form">
-              <div class="form-group">
-                <h5 class="card-title">Connexion</h5>
-                <label for="email" class="label">Email :</label>
+              <h2 class="card-title">Connexion</h2>
+              <div class="form-group labelAndInput">
+                <label for="email" class="label">Email</label>
                 <input type="email" id="email" name="email" placeholder="Entrez votre email" [(ngModel)]="email" class="input">
               </div>
-              <div class="form-group">
-                <label for="password" class="label">Mot de passe :</label>
+              <div class="form-group labelAndInput">
+                <label for="password" class="label">Mot de passe</label>
                 <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" [(ngModel)]="password" class="input">
               </div>
-              <button type="submit" class="button button-connect">Se connecter</button>
-              <button type="button" (click)="redirectToRegister()" class="button button-register">S'inscrire</button>
+              <div class="btns">
+                <button type="submit" class="button button-connect">Se connecter</button>
+                <button type="button" (click)="redirectToRegister()" class="button button-register">S'inscrire</button>
+              </div>
             </form>
             <div class="drop drop-1"></div>
             <div class="drop drop-2"></div>

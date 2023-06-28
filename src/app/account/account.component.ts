@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interface/user';
 import { UserService } from '../services/user.service';
+import { Order } from '../interface/order';
 
 @Component({
   selector: 'app-account',
@@ -9,6 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class AccountComponent implements OnInit {
   user: User={};
+  order: Order={};
 
   constructor(private userService: UserService) {}
 

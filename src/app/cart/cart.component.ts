@@ -69,6 +69,16 @@ export class CartComponent implements OnInit {
     }
   }
 
+  calculateTotal(): number {
+    let total = 0;
+    for (const book of this.books) {
+      if (book.number_ordered && book.prix) {
+        total += book.number_ordered * book.prix;
+      }
+    }
+    return total;
+  }
+
   updateCart() {
     localStorage.setItem('cart', JSON.stringify(this.books));
   }

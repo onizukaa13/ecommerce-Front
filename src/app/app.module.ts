@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AdminRegisterComponent } from './admin-register/admin-register.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     RegisterComponent,
     AccountComponent,
     OrderSummaryComponent,
+    AdminRegisterComponent,
     
   ],
   imports: [

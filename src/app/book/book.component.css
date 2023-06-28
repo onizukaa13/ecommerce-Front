@@ -1,3 +1,20 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(45deg, #e23a5b, #3F5EFB);
+  height: 100vh;
+  font-family: arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
 .background-image {
     position: absolute;
     top: 0;
@@ -8,6 +25,32 @@
     filter: blur(8px); /* Ajustez la valeur de flou selon vos préférences */
   }
 
+  #image-card{
+    height: 200px;
+    object-fit: cover;
+    transition: all ease-in-out 0.3s;
+  }
+
+  #image-card:hover {
+    transform: scale(1.2);
+
+  }
+
+  .image-block{
+    overflow: hidden;
+  }
+
+  .card{
+    width: 280px;
+    height: 450px;
+    overflow: hidden;
+    box-shadow: 10px 10px 1em grey;
+  }
+
+  p{
+   padding-bottom: 0 !important; 
+   margin-bottom: 0 !important
+  }
 
   .overlay {
     position: fixed;
