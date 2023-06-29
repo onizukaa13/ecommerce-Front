@@ -28,6 +28,7 @@
   <div class="d-flex justify-content-around my-3">
   <div (click)="filtre_stock()" style="padding:10px;color:#fafafa;background:linear-gradient(45deg, #e23a5b, #3F5EFB);border-radius:5px;width: 150px;cursor:pointer">Filtrer par stock</div>
   <div (click)="reset_filter()" style="padding:10px;background-color:grey;border-radius:5px;width: 150px;cursor:pointer">Reset filtre</div>
+  <button *ngIf="haveRole('ROLE_ADMIN')"style="padding:10px;background-color:grey;border-radius:5px;width: 150px;cursor:pointer"routerLink="/createbook">Ajout d'un livre</button>
   <div>
   <input class="btn btn-info" placeholder="Filtrer par auteur" type="text" id="authorFilter" [(ngModel)]="authorFilter" (input)="filtre_auteur()" />
 </div>
@@ -61,7 +62,6 @@
 
   <div *ngIf="successPopUp" class="overlay">
     <div class="popup">
-      <h2>Success</h2>
       <a class="close" (click)="closeSuccess()">&times;</a>
       <div class="content">
         Le livre a été ajouté au panier!
@@ -71,7 +71,6 @@
 
   <div *ngIf="failedPopUp" class="overlay">
     <div class="popup">
-      <h2>FAILED</h2>
       <a class="close" (click)="closeFailed()">&times;</a>
       <div class="content">
         Le stock de ce livre est insuffisant!

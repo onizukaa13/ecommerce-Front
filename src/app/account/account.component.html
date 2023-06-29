@@ -22,15 +22,23 @@
     <!-- Autres informations du compte utilisateur -->
 
     <h3>Historique des commandes</h3>
-  <ul>
-    <li *ngFor="let order of user.orders">
-      <p>Numéro de commande : {{ order.orderNumber }}</p>
-      <p>Date de commande : {{ order.orderDate }}</p>
-        <li *ngFor="let book of order['books']">
-          <p>Titre du livre : {{ book.title }}</p>
-          <p>Auteur : {{ book.author }}</p>
-          <!-- Autres détails du livre -->
-          <img [src]="book.image" alt="Image du livre">
-        </li>
-      </ul>
-  </div>
+      <div class="container">
+      <div class="row d-flex justify-content-center">
+      <div class="card my-3 mx-3" *ngFor="let order of orders">
+        <p>Numéro de commande : {{ order.orderNumber }}</p>
+        <p>Date de commande : {{ order.orderDate | date }}</p>
+        
+        
+        <ul>
+          <li *ngFor="let orderline of order.orderlines">
+            <p>Titre du livre : {{ orderline.book?.titre }}</p>
+            <p>Auteur : {{ orderline.book?.author }}</p>
+            <!-- Autres détails du livre -->
+            <img [src]="orderline.book?.image" alt="Image du livre">
+             <p>Prix de la commande : {{ getPrice(orderline)}}</p>
+          </li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  

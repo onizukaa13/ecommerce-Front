@@ -9,6 +9,7 @@ import { AccountComponent } from './account/account.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 
+
 const routes: Routes = [
   { path: 'books', component: BookComponent },
   { path: 'books-detail/:id', component: BookDetailComponent },
@@ -17,6 +18,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'account', component: AccountComponent },
   { path: 'order-summary/:id', component: OrderSummaryComponent },
+
+ 
+
 
 
 ];

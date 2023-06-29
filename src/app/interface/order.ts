@@ -7,5 +7,5 @@ export interface Order {
   orderDate?: string;
   orderNumber?: string;
   user?: User;
-  orderline?: Orderline[];
+  orderlines?: Orderline[];
 }

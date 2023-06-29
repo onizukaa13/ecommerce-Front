@@ -12,4 +12,5 @@ export class UserService {
   getUserByEmail(email:string) {
     return this.http.get<Array<User>>('http://127.0.0.1:8000/api/users?email='+email);
   }
+
 }

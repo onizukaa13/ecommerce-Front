@@ -74,7 +74,9 @@ export class BookComponent implements OnInit {
     // Mettre à jour le panier dans le stockage persistant
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
-  
+  haveRole(role: string): boolean {
+    return this.authService.haveRole(role);
+  }
   
   viewBookDetails(book: Book) {
     console.log('Détails du livre :', book);
@@ -107,7 +109,6 @@ export class BookComponent implements OnInit {
       this.reset_filter();
     }
   }
-  
   
 
   reset_filter(){

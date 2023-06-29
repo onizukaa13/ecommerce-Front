@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AdminRegisterComponent } from './admin-register/admin-register.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { AdminRegisterComponent } from './admin-register/admin-register.componen
     AccountComponent,
     OrderSummaryComponent,
     AdminRegisterComponent,
+    
     
   ],
   imports: [

@@ -13,6 +13,7 @@ import { Orderline } from '../interface/orderline';
 })
 export class OrderSummaryComponent implements OnInit {
   order: Order | null = null;
+  total:number=0
 
   constructor(
     private route: ActivatedRoute,
@@ -35,5 +36,15 @@ export class OrderSummaryComponent implements OnInit {
         );
       }
     });
+
+    
+  }
+
+  getPrice(orderline: Orderline ): number| undefined{
+    if(orderline.book?.prix==undefined || orderline.quantity==undefined)
+    return undefined;
+    const price=orderline.book.prix * orderline.quantity
+    this.total+= price
+        return price
   }
 }
