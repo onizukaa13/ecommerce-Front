@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { Order } from '../interface/order';
 import { OrderService } from '../services/order.service';
 import { Orderline } from '../interface/orderline';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -15,7 +16,7 @@ export class AccountComponent implements OnInit {
   orders: Order[]=[]
   total:number=0
 
-  constructor(private userService: UserService,private orderService: OrderService) {}
+  constructor(private userService: UserService,private orderService: OrderService, public authService: AuthService) {}
 
   ngOnInit(): void {
     this.getUserInfo();

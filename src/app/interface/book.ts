@@ -1,7 +1,6 @@
 
-
 export interface Book {
-  book: any;
+  book?: any;
   id?: number,
   titre?:string,
   author?:string,

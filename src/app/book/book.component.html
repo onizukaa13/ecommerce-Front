@@ -54,6 +54,9 @@
             <div class="d-flex justify-content-around">
             <button  class="btn btn-primary" (click)="addToCart(book)"><i class="fa-solid fa-cart-shopping"></i></button>
             <button class="btn btn-secondary" (click)="viewBookDetails(book)"><i class="fa-solid fa-eye"></i></button>
+            <button *ngIf="haveRole('ROLE_ADMIN')" style="padding:10px;background-color:grey;border-radius:5px;cursor:pointer"(click)="deleteBook(book)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
           </div>
         </div>
       </div>

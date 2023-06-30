@@ -15,3 +15,41 @@
     z-index: -1;
     filter: blur(8px); /* Ajustez la valeur de flou selon vos préférences */
   }
+
+.card{
+  box-shadow: 10px 10px 1em grey ;
+  text-align: center;
+  height: auto;
+}
+
+.card ul li{
+  list-style: none;
+}
+
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.welcome-msg {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  text-transform: uppercase;
+}
+
+.user-email, .user-role {
+  font-weight: bold;
+}
+
+.user-role {
+  color: #007bff;
+}
+
+.blurred-image {
+  filter: blur(5px);
+}
+

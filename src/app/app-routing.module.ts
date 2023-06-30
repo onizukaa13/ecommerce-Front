@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { CreatebookComponent } from './createbook/createbook.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'account', component: AccountComponent },
   { path: 'order-summary/:id', component: OrderSummaryComponent },
+  { path: 'createbook', component: CreatebookComponent},
 
  
 

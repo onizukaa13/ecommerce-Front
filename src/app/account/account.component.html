@@ -1,6 +1,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <div class="position-relative">
+  <div class="position-relative"></div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" class="nav-link" routerLink="/books">L2I</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -15,9 +15,12 @@
   </nav>
   
 
-  <div *ngIf="user">
-    <h2>Bienvenue dans votre espace, {{ user.firstname | uppercase }} {{ user.name | uppercase }}</h2>
-    <p>Email : {{ user.email }}</p>
+  <div *ngIf="user" class="user-info">
+    <h2 class="welcome-msg">Bienvenue dans votre espace, <span class="user-name">{{ user.firstname | uppercase }} {{ user.name | uppercase }}</span></h2>
+    <p><strong>Email:</strong> <span class="user-email"><br>{{ user.email }}</span></p>
+    <p><strong>Rôle:</strong> <span class="user-role"><br>{{ authService.getRoleFormat() }}</span></p>
+  </div>
+  
 
     <!-- Autres informations du compte utilisateur -->
 
@@ -27,15 +30,13 @@
       <div class="card my-3 mx-3" *ngFor="let order of orders">
         <p>Numéro de commande : {{ order.orderNumber }}</p>
         <p>Date de commande : {{ order.orderDate | date }}</p>
-        
-        
         <ul>
           <li *ngFor="let orderline of order.orderlines">
             <p>Titre du livre : {{ orderline.book?.titre }}</p>
             <p>Auteur : {{ orderline.book?.author }}</p>
             <!-- Autres détails du livre -->
             <img [src]="orderline.book?.image" alt="Image du livre">
-             <p>Prix de la commande : {{ getPrice(orderline)}}</p>
+             <p>Prix de la commande : {{ getPrice(orderline)}}€</p>
           </li>
         </ul>
       </div>

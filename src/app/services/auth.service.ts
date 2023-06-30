@@ -56,5 +56,11 @@ export class AuthService {
 
   }
 
+  getRoleFormat(){
+    const token = this.getToken();
+    const { roles }: {roles:string[]} = jwt_decode(token as string);
+    return roles.join(' - ')
+  }
+
 }
 

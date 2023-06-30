@@ -15,6 +15,7 @@ import { AccountComponent } from './account/account.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AdminRegisterComponent } from './admin-register/admin-register.component';
+import { CreatebookComponent } from './createbook/createbook.component';
 
 
 
@@ -29,6 +30,7 @@ import { AdminRegisterComponent } from './admin-register/admin-register.componen
     AccountComponent,
     OrderSummaryComponent,
     AdminRegisterComponent,
+    CreatebookComponent,
     
     
   ],

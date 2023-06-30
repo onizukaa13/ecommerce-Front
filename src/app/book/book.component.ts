@@ -124,4 +124,12 @@ export class BookComponent implements OnInit {
     this.router.navigateByUrl('/login');
 
   }
+
+  deleteBook(book:Book){
+    console.log(book)
+  this.bookService.deleteBook(book).subscribe(()=>{
+    let index = this.books.indexOf(book)
+    this.books.splice(index, 1)
+});
+  }
 }

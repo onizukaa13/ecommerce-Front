@@ -45,6 +45,13 @@ body {
     height: 450px;
     overflow: hidden;
     box-shadow: 10px 10px 1em grey;
+    
+  }
+  .card:hover{
+
+    transform: translateY(-15px);
+
+    
   }
 
   p{

@@ -1,0 +1,29 @@
+<form (submit)="createBook()">
+    <div class="form-group">
+      <label for="title">Titre :</label>
+      <input type="text" class="form-control" id="title" [(ngModel)]="newBook.titre" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="author">Auteur :</label>
+      <input type="text" class="form-control" id="author" [(ngModel)]="newBook.author" name="author" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description :</label>
+      <textarea class="form-control" id="description" [(ngModel)]="newBook.description" name="description" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Prix :</label>
+      <input type="number" class="form-control" id="price" [(ngModel)]="newBook.prix" name="price" required>
+    </div>
+    <div class="form-group">
+      <label for="genre">Genre :</label>
+      <input type="text" class="form-control" id="genre" [(ngModel)]="newBook.genre" name="genre" required>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Image :</label>
+        <input type="text" class="form-control" id="image" [(ngModel)]="newBook.image" name="image" required>
+      </div>
+    <button type="submit" class="btn btn-primary">Créer</button>
+  </form>
+  
