@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Orderline } from '../interface/orderline';
 
 
+
 @Component({
   selector: 'app-order-summary',
   templateUrl: './order-summary.component.html',
@@ -17,7 +18,7 @@ export class OrderSummaryComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
   ) { }
 
   ngOnInit(): void {
@@ -27,8 +28,10 @@ export class OrderSummaryComponent implements OnInit {
         this.orderService.getOrderById(orderId).subscribe(
           (response) => {
             console.log(response);
-            
             this.order = response;
+  
+            // Calculer le prix total
+            this.calculateTotal();
           },
           (error) => {
             console.error('Erreur lors de la récupération des détails de la commande', error);
@@ -36,15 +39,26 @@ export class OrderSummaryComponent implements OnInit {
         );
       }
     });
-
-    
   }
-
-  getPrice(orderline: Orderline ): number| undefined{
-    if(orderline.book?.prix==undefined || orderline.quantity==undefined)
-    return undefined;
-    const price=orderline.book.prix * orderline.quantity
-    this.total+= price
-        return price
+  
+  getPrice(orderline: Orderline): number | undefined {
+    if (orderline.book?.prix == undefined || orderline.quantity == undefined)
+      return undefined;
+  
+    const price = orderline.book.prix * orderline.quantity;
+    return price;
   }
+  
+  calculateTotal(): void {
+    this.total = 0;
+    if (this.order && this.order.orderlines) {
+      for (const orderline of this.order.orderlines) {
+        const price = this.getPrice(orderline);
+        if (price !== undefined) {
+          this.total += price;
+        }
+      }
+    }
+  }
+  
 }

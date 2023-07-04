@@ -1,174 +1,81 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* CSS pour le positionnement et le style de la page de connexion */
 
-body {
-    background: linear-gradient(45deg, #e23a5b, #3F5EFB);
-    height: 100vh;
-    font-family: arial, sans-serif;
+/* Centrer le carré au milieu de la page */
+.social-media {
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  .container {
-    position: relative;
-  }
-
-  h2{
-    color:#ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
-  }
-
-  .form {
-    background: rgba(255, 255, 255, .3);
-    padding: 3rem;
-    height: 320px;
-    border-radius: 20px;
-    border-left: 1px solid rgba(255, 255, 255, .3);
-    border-top: 1px solid rgba(255, 255, 255, .3);
-    backdrop-filter: blur(10px);
-    position: relative;
-    z-index: 2;
-    -webkit-backdrop-filter: blur(10px);
-    -moz-backdrop-filter: blur(10px);
-    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, .2);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .label {
-    color: white;
-    font-weight: 500;
-    opacity: .7;
-    font-size: 1.4rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
-  }
-
-
-  .input {
-    background: transparent;
-    border: none;
-    border-left: 1px solid rgba(255, 255, 255, .3);
-    border-top: 1px solid rgba(255, 255, 255, .3);
-    padding: 1rem;
-    width: 200px;
-    border-radius: 50px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    -moz-backdrop-filter: blur(5px);
-    box-shadow: 4px 4px 60px rgba(0, 0, 0, .2);
-    color: white;
-    font-weight: 500;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
-    transition: all .3s;
-  }
-
-  .input:hover,
-  input[type="email"]:focus,
-  input[type="password"]:focus {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .labelAndInput{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
+    height: 100vh;
   }
-
-
-  .button {
-    margin-top: 10px;
-    width: 150px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
- .button-connect {
-  color: white;
-  font-weight: 500;
-  padding: 10px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
-  border-radius: 20px; /* Ajout de la propriété border-radius */
-  border: none;
-  background: transparent;
-
-}
-
-.button-register {
-  color: white;
-  font-weight: 500;
-  padding: 10px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
-  border-radius: 20px; /* Ajout de la propriété border-radius */
-  border: none;
-  background: transparent;
-}
-
-.button-connect:hover {
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, .2);
-
-  }
-
-.button-register:hover {
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, .2);
-
-  }
-.btns{
-    display: flex;
-    justify-content: space-between;
-}
-
-
-  .drop {
-    background: rgba(255, 255, 255, .3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+  
+  /* Style du carré */
+  .square {
+    width: 200px;
+    height: 200px;
+    background-color: #f1f1f1;
     border-radius: 10px;
-    border-left: 1px solid rgba(255, 255, 255, .3);
-    border-top: 1px solid rgba(255, 255, 255, .3);
-    box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style des icônes de réseaux sociaux */
+  .social-media p {
+    font-size: 30px;
+    margin: 10px;
+    color: #333;
+  }
+  
+  /* Style du bouton de connexion */
+  .social-media button {
+    margin-top: 20px;
+  }
+  
+  /* Style des gouttes d'eau animées en arrière-plan */
+  .drop {
     position: absolute;
-    transition: all 0.2s ease;
+    width: 20px;
+    height: 20px;
+    background-color: #3498db;
+    border-radius: 50%;
+    animation: drop-animation 1.5s ease-in-out infinite;
   }
-
+  
   .drop-1 {
-    height: 80px;
-    width: 80px;
-    top: -20px;
-    left: -40px;
-    z-index: 1;
+    top: 30px;
+    left: 30px;
   }
-
+  
   .drop-2 {
-    height: 60px;
-    width: 80px;
-    bottom: -30px;
-    right: -10px;
-    z-index:3;
+    top: 30px;
+    right: 30px;
   }
-
+  
   .drop-3 {
-    height: 100px;
-    width: 100px;
-    bottom: 120px;
-    right: -50px;
-    z-index: 1;
+    bottom: 30px;
+    left: 30px;
   }
-
+  
   .drop-4 {
-    height: 120px;
-    width: 120px;
-    top: -60px;
-    right: -60px;
-    z-index:3;
+    bottom: 30px;
+    right: 30px;
   }
+  
+  .drop-5 {
+    top: calc(50% - 10px);
+    left: calc(50% - 10px);
+  }
+  
+  @keyframes drop-animation {
+    0% {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+  }
+  

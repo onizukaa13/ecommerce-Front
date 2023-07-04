@@ -1,22 +1,26 @@
+<div class="logo">
+  <img src="https://l2i.enterprises/wp-content/uploads/2016/04/Logo.png" alt="Logo L2I">
+</div>
 <div *ngIf="order" class="order-details">
   <h1 class="mb-4">Récapitulatif de la commande</h1>
-  <p><strong>Numéro de commande :</strong> {{ order.orderNumber }}</p>
-  <p><strong>Date de commande :</strong> {{ order.orderDate | date }}</p>
-  <p><strong>Utilisateur :</strong> {{ order.user?.name }}</p>
+  <p class="order-number">Numéro de commande:{{ order.orderNumber }}</p>
+  <p class="order-date">Date de commande:{{ order.orderDate | date }}</p>
+  <p class="user">Utilisateur:{{ order.user?.name }}</p>
 
-  <h2 class="mt-4">Livres commandés :</h2>
-  <ul class="list-group">
-    <li *ngFor="let orderline of order['orderlines']" class="list-group-item">
-      <div class="media">
-        <img [src]="orderline.book?.image" alt="Image du livre" class="mr-3 img-fluid" id="image-card">
-        <div class="media-body">
-          <h5 class="mt-0">{{ orderline.book?.titre }}</h5>
-          <p class="mb-1">Prix : {{ getPrice(orderline) }} €</p>
-          <p class="mb-1">Quantité : {{ orderline.quantity }}</p>
-          <!-- Ajoutez d'autres informations spécifiques au livre si nécessaire -->
+  <h2 class="books-title">Livres commandés</h2>
+  <ul class="book-list">
+    <li *ngFor="let orderline of order['orderlines']" class="book-item">
+      <div class="book-details">
+        <div class="book-image">
+          <img [src]="orderline.book?.image" alt="Image du livre">
+        </div>
+        <div class="book-info">
+          <h5 class="book-title">{{ orderline.book?.titre }}</h5>
+          <p class="book-price">Prix : {{ getPrice(orderline) }} €</p>
+          <p class="book-quantity">Quantité : {{ orderline.quantity }}</p>
         </div>
       </div>
     </li>
   </ul>
-  <p class="mt-3"><strong>Prix Total de la commande :</strong> {{ total }} €</p>
+  <p class="total-price">Prix Total de la commande : {{ total }} €</p>
 </div>

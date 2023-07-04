@@ -19,7 +19,7 @@
 .card{
   box-shadow: 10px 10px 1em grey ;
   text-align: center;
-  height: auto;
+  height: min-content;
 }
 
 .card ul li{

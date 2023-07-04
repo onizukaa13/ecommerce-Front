@@ -28,15 +28,15 @@
       <div class="container">
       <div class="row d-flex justify-content-center">
       <div class="card my-3 mx-3" *ngFor="let order of orders">
-        <p>Numéro de commande : {{ order.orderNumber }}</p>
+      <strong><p class="numero text-warning">Numéro de commande : {{ order.orderNumber }}</p></strong>
         <p>Date de commande : {{ order.orderDate | date }}</p>
         <ul>
           <li *ngFor="let orderline of order.orderlines">
-            <p>Titre du livre : {{ orderline.book?.titre }}</p>
-            <p>Auteur : {{ orderline.book?.author }}</p>
+           <strong><p class="titre">Titre du livre : {{ orderline.book?.titre }}</p></strong>
+            <p class="auteur text-secondary">Auteur : {{ orderline.book?.author }}</p>
             <!-- Autres détails du livre -->
             <img [src]="orderline.book?.image" alt="Image du livre">
-             <p>Prix de la commande : {{ getPrice(orderline)}}€</p>
+            <strong> <p class="prix">Prix TTC: {{ getPrice(orderline)}}€</p></strong>
           </li>
         </ul>
       </div>
