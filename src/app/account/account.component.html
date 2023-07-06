@@ -27,18 +27,20 @@
     <h3>Historique des commandes</h3>
       <div class="container">
       <div class="row d-flex justify-content-center">
-      <div class="card my-3 mx-3" *ngFor="let order of orders">
+      <div class="card my-3 mx-3" *ngFor="let order of orders;let i = index">
       <strong><p class="numero text-warning">Numéro de commande : {{ order.orderNumber }}</p></strong>
         <p>Date de commande : {{ order.orderDate | date }}</p>
         <ul>
-          <li *ngFor="let orderline of order.orderlines">
+          <li *ngFor="let orderline of order.orderlines; ">
            <strong><p class="titre">Titre du livre : {{ orderline.book?.titre }}</p></strong>
             <p class="auteur text-secondary">Auteur : {{ orderline.book?.author }}</p>
             <!-- Autres détails du livre -->
             <img [src]="orderline.book?.image" alt="Image du livre">
             <strong> <p class="prix">Prix TTC: {{ getPrice(orderline)}}€</p></strong>
+            
           </li>
         </ul>
+        <!-- <span>{{ total_array_[i] }}</span> -->
       </div>
       </div>
     </div>

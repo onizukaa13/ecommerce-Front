@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit {
         // Traitement réussi de la commande
       },
       (error) => {
-        // Gérer l'erreur lors de la passation de commande
+        // Gérer l'erreur lors du passage de commande
       }
     );
   }

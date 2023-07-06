@@ -28,7 +28,7 @@
   <div class="d-flex justify-content-around my-3">
   <div (click)="filtre_stock()" style="padding:10px;color:#fafafa;background:linear-gradient(45deg, #e23a5b, #3F5EFB);border-radius:5px;width: 150px;cursor:pointer">Filtrer par stock</div>
   <div (click)="reset_filter()" style="padding:10px;background-color:grey;border-radius:5px;width: 150px;cursor:pointer">Reset filtre</div>
-  <button *ngIf="haveRole('ROLE_ADMIN')"style="padding:10px;background-color:grey;border-radius:5px;width: 150px;cursor:pointer"routerLink="/createbook">Ajout d'un livre</button>
+  <button *ngIf="admin" style="padding:10px;background-color:grey;border-radius:5px;width: 150px;cursor:pointer"routerLink="/createbook">Ajout d'un livre</button> 
   <div>
   <input class="btn btn-info" placeholder="Filtrer par auteur" type="text" id="authorFilter" [(ngModel)]="authorFilter" (input)="filtre_auteur()" />
 </div>
@@ -42,7 +42,7 @@
 
   <div class="container">
     <div class="row d-flex justify-content-center">
-        <div class="card my-3 mx-3"*ngFor="let book of books">
+        <div class="card my-3 mx-3" *ngFor="let book of books">
          <div class="image-block">
             <img id="image-card" class="card-img-top" src="{{ book.image }}" alt="{{ book.titre }}">
         </div>
@@ -54,7 +54,7 @@
             <div class="d-flex justify-content-around">
             <button  class="btn btn-primary" (click)="addToCart(book)"><i class="fa-solid fa-cart-shopping"></i></button>
             <button class="btn btn-secondary" (click)="viewBookDetails(book)"><i class="fa-solid fa-eye"></i></button>
-            <button *ngIf="haveRole('ROLE_ADMIN')" style="padding:10px;background-color:grey;border-radius:5px;cursor:pointer"(click)="deleteBook(book)">
+            <button *ngIf="admin" style="padding:10px;background-color:grey;border-radius:5px;cursor:pointer"(click)="deleteBook(book)">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>

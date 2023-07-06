@@ -16,6 +16,7 @@ export class BookComponent implements OnInit {
   failedPopUp: Boolean=false;
   successPopUp: Boolean=false;
   connected:Boolean = false
+  admin:Boolean = false
   authorFilter: string = '';
   
   constructor(private bookService: BookService,private authService: AuthService, private router:Router) { }
@@ -34,6 +35,10 @@ export class BookComponent implements OnInit {
 
     if(token != null){
       this.connected = true
+
+      this.admin = this.haveRole('ROLE_ADMIN')
+      console.log(this.admin);
+      
     }
 
     console.log(this.connected)
@@ -74,7 +79,7 @@ export class BookComponent implements OnInit {
     // Mettre à jour le panier dans le stockage persistant
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
-  haveRole(role: string): boolean {
+  haveRole(role: string) {
     return this.authService.haveRole(role);
   }
   
